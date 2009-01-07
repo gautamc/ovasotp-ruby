@@ -1,0 +1,39 @@
+README
+======
+
+1. A ruby client for the OpenVAS OTP 1.0 protocol.
+
+http://www.openvas.org/compendium/openvas-compendium.html
+http://www.openvas.org/compendium/openvas-transfer-protocol.html
+
+2. OpenVAS is a GPL'ed fork of the Nessus security scanner.
+3. The OpenVAS server scans target machines for vulnerabilities, by running NVTs (network vulnerability tests)
+4. The OpenVAS client communicates with the OpenVAS server using the OTP.
+5. The existing client is written in C. I am attempting to implement a ruby client.
+6. I am doing this by going through the OpenVAS compendium(documentation) and the source code of the C client(openvas-client-2.0.1).
+
+7. The OpenVAS client and server can only communicate over an encrypted socket.
+
+An example run of the implmentation so far
+==========================================
+
+mrblue@darknetmaster:~/ruby/playground/otpclient-ruby$ ./ovas-otp.rb 
+waring: peer certificate won't be verified this session.
+< OTP/1.0 >
+User : gautam
+Password : helloworld
+Connected to openVAS server... launching shell..
+openvas-rubyclient> attack localhost
+SERVER <|> PLUGINS_MD5 <|> 6a7dd34c9ddf18212ef49241cd11f7f2 <|> SERVER
+openvas-rubyclient> bye
+mrblue@darknetmaster:~/ruby/playground/otpclient-ruby$ 
+
+These are the entries in the openvasd log
+=========================================
+
+[Wed Jan  7 09:25:51 2009][3332] connection from 127.0.0.1 
+[Wed Jan  7 09:25:51 2009][3506] Client requested protocol < OTP/1.0 > . 
+[Wed Jan  7 09:25:55 2009][3506] successful login of gautam from 127.0.0.1 
+[Wed Jan  7 09:26:30 2009][3506] Communication closed by client 
+
+- Gautam
